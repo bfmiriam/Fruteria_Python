@@ -12,8 +12,24 @@ from sqlite3 import dbapi2
 
 class InformePedidos(Gtk.Window):
 
-    def __init__(self):
+    """ Ventana InformePedidos xenera un informe de todos os pedidos gardados na base de datos do programa de xestion da fruteria.
 
+        Metodos:
+
+        __init__ --Constructor
+
+        """
+
+    def __init__(self):
+        """Constructor  da clase InformePedidos (Window)
+           Recolle todos os pedidos da base de datos e os volca nunha taboa nun documento pdf
+
+            :param None
+
+             Excepcions:
+             -Non ten
+
+              """
 
         bbdd = dbapi2.connect("bbdd.dat")
 
@@ -47,7 +63,6 @@ class InformePedidos(Gtk.Window):
                 ('BACKGROUND', (0, 1), (-1, -1), colors.aliceblue),
 
                 ('VALIGN', (0, 0), (-1, -1), 'MIDDLE'),
-
 
                 ('BOX', (0, 0), (-1, -1), 1, colors.black),
 

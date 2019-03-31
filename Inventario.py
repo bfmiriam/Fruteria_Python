@@ -7,8 +7,27 @@ from gi.repository import Gtk
 
 class Inventario(Gtk.Window):
 
+    """Ventana Inventario para engadir e mostrar todos os productos da fruteria coas suas caracteristicas
+
+        Metodos:
+
+        __init__ --Constructor
+        on_btnEngadir_clicked -- Gardamos un novo producto
+
+        """
+
 
     def __init__(self):
+
+        """Constructor  da clase Inventario (Window)
+            TreeView que mostra todos os productos da base de datos e permite engadir novos productos
+
+                :param None
+
+                Excepcions:
+                -Non ten
+
+                """
         Gtk.Window.__init__(self, title="Inventario")
         bbdd = dbapi2.connect("bbdd.dat")
         self.cursor = bbdd.cursor()
@@ -96,6 +115,16 @@ class Inventario(Gtk.Window):
 
 
     def on_btnEngadir_clicked(self,cursor,modelo):
+
+        """Recolle a informacion obtida nos Gtk.Entry e engade os seus valores a taboa Productos da base de datos
+           Finalmente vacia todos os cadros de texto  para poder gardar outro producto
+
+           :param cursor: consultas na bbdd
+           :param modelo: ListStore do TreeView
+           :return: None
+           :raises: dbapi2.DatabaseError
+
+           """
 
         producto =self.txtProducto.get_text()
         cantidade = float(self.txtCantidade.get_text())

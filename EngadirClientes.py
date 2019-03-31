@@ -6,8 +6,26 @@ from gi.repository import Gtk
 
 
 class EngadirClientes(Gtk.Window):
+    """Formulario para engadir clientes a base de datos do programa de xestion da fruteria.
+
+        Metodos:
+
+        __init__ --Constructor
+        on_btnAceptar_clicked -- Gardamos o novo cliente
+
+        """
 
     def __init__(self):
+        """Constructor  da clase EngadirClientes (Window)
+                Formulario que utiliza varios Gtk.Entry e un ComboBox definidos nun ficheiro glade para recopilar os datos
+                dos clientes e gardalos nunha base de datos para posteriores pedidos.
+
+                :param None
+
+                Excepcions:
+                -Non ten
+
+                """
         Gtk.Window.__init__(self, title="Engadir Clientes")
 
         bbdd = dbapi2.connect("bbdd.dat")
@@ -37,6 +55,14 @@ class EngadirClientes(Gtk.Window):
         fiestra.show_all()
 
     def on_btnAceptar_clicked(self,guardar):
+        """Recolle a informacion do formulario e a garda na base de datos
+           Finalmente vacia todos os cadros de texto e limpa o ComboBox para seguir gardando clientes
+
+           :param guardar: guardar
+           :return: None
+           :raises: dbapi2.DatabaseError
+
+           """
 
         nombre =self.txtNombre.get_text()
         cif =self.txtCif.get_text()

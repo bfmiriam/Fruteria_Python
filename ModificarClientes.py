@@ -7,7 +7,28 @@ from gi.repository import Gtk
 
 class ModificarClientes(Gtk.Window):
 
+    """Formulario para modificar ou eliminar clientes da base de datos do programa de xestion da fruteria.
+
+        Metodos:
+
+        __init__ --Constructor
+        on_btnBuscar_clicked -- recolle o cliente a modificar/eliminar
+        on_btnEliminar_clicked -- elimina o cliente seleccionado
+        on_btnModificar_clicked -- modifica o cliente seleccionado
+
+        """
+
     def __init__(self):
+        """Constructor  da clase ModificarClientes (Window)
+           Formulario que recolle o cliente desexado mediante un ComboBox e mostra todos os seus datos para
+           poder visualizalos e modificalos/eliminalos se e o que desexamos
+
+            :param None
+
+             Excepcions:
+             -Non ten
+
+             """
         Gtk.Window.__init__(self, title="Modificar Clientes")
 
         bbdd = dbapi2.connect("bbdd.dat")
@@ -50,6 +71,13 @@ class ModificarClientes(Gtk.Window):
 
     def on_btnBuscar_clicked(self,cmbEmpresas):
 
+        """Recolle o nome do  cliente seleccionado no ComboBox e busca os seus datos na base de datos, mostrandoos no formulario
+
+           :param cmbEmpresas: comboBox
+           :return: None
+
+           """
+
         nombre =self.cmbEmpresas.get_active_text()
 
         cursorCliente = self.cursor.execute("select NombreEmpresa,CIF,telefono,email,direccion,codPostal,provincia from Clientes where NombreEmpresa=?",(nombre,))
@@ -64,6 +92,14 @@ class ModificarClientes(Gtk.Window):
             self.txtProvincia.set_text(row[6])
 
     def on_btnEliminar_clicked(self, cmbEmpresas):
+
+        """Elimina da base de datos o cliente seleccionado no ComboBox e vacia o formulario
+
+             :param cmbEmpresas: comboBox
+             :return: None
+             :raises: dbapi2.DatabaseError
+
+             """
 
         nombre = self.cmbEmpresas.get_active_text()
 
@@ -85,6 +121,15 @@ class ModificarClientes(Gtk.Window):
         self.cmbEmpresas.set_active(-1)
 
     def on_btnModificar_clicked(self, cmbEmpresas):
+        """Recolle os datos mostrados no formulario e actualiza na base de datos o cliente mostrado nel, para rexistrar as modificacions
+           e vacia o formulario
+
+             :param cmbEmpresas: comboBox
+             :return: None
+             :raises: dbapi2.DatabaseError
+
+             """
+
         nombre = self.cmbEmpresas.get_active_text()
 
         nombreEmpresa= self.txtNombre.get_text()

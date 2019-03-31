@@ -9,7 +9,28 @@ from InformePedidos import *
 
 class XerarInformes(Gtk.Window):
 
+    """Ventana XenerarInformes para  decidir que tipo de informe xerar, se unha taboa de pedidos, ou a factura dun cliente en particular
+
+        Metodos:
+
+        __init__ --Constructor
+        on_btnClientes_clicked --xera o informe dun cliente concreto
+        on_btnPedidos_clicked -- xera un informe con todos os pedidos
+
+        """
+
     def __init__(self):
+
+        """Constructor  da clase XerarInformes (Window)
+            Dispomos dun ComboBox no que podemos escoller o cliente desexado e mostrar os seus pedidos ou simplemente
+            mostrar os de todos os clientes
+
+           :param None
+
+           Excepcions:
+           -Non ten
+
+           """
         Gtk.Window.__init__(self, title="Xerar Informes")
 
         bbdd = dbapi2.connect("bbdd.dat")
@@ -43,12 +64,24 @@ class XerarInformes(Gtk.Window):
         fiestra.show_all()
 
     def on_btnClientes_clicked(self,guardar):
+        """Xenera o informe de pedidos feitos do cliente seleccionado no ComboBox
+
+          :param guardar: guardar
+          :return: None
+
+            """
 
         cliente = self.cmbClientes.get_active_text()
         XerarFactura(cliente)
         self.cmbClientes.set_active(-1)
 
     def on_btnPedidos_clicked(self, guardar):
+        """Xenera o informe de todos os pedidos realizados que estan gardados na base de datos
+
+          :param guardar: guardar
+          :return: None
+
+           """
         InformePedidos()
 
 

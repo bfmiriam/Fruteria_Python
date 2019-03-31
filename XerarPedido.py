@@ -7,7 +7,26 @@ from gi.repository import Gtk
 
 class XerarPedido(Gtk.Window):
 
+    """Ventana XerarPedido para  realizar novos pedidos e gardalos na base de datos
+
+        Metodos:
+
+        __init__ --Constructor
+         on_btnFacerPedido_clicked -- recolle a informacion do formulario e realiza o pedido
+         on_btnNovo_clicked -- vacia o formulario para realizar novos pedidos
+        """
+
     def __init__(self):
+
+        """Constructor  da clase XerarPedido (Window)
+            Dispomos de dous ComboBox  para seleccionar a empresa e o producto, indicando a cantidade e a fecha para realizar o pedido
+
+           :param None
+
+           Excepcions:
+           -Non ten
+
+           """
         Gtk.Window.__init__(self, title="Xerar Pedido")
 
         bbdd = dbapi2.connect("bbdd.dat")
@@ -56,6 +75,13 @@ class XerarPedido(Gtk.Window):
         fiestra.show_all()
 
     def on_btnFacerPedido_clicked(self,guardar):
+        """Rexistra na base de datos o pedido recollendo a informacion do formulario
+
+             :param guardar: guardar
+             :return: None
+             :raises: dbapi2.DatabaseError
+
+             """
 
         empresa = self.cmbEmpresas.get_active_text()
         producto =self.cmbProductos.get_active_text()
@@ -79,6 +105,13 @@ class XerarPedido(Gtk.Window):
             print("Guardado en la base de datos")
 
     def on_btnNovo_clicked(self, guardar):
+        """Vacia o contido do formulario para poder realizar un novo pedido
+
+             :param guardar: guardar
+             :return: None
+
+             """
+
 
         self.txtCantidade.set_text('')
         self.txtFecha.set_text('')

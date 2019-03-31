@@ -12,7 +12,25 @@ from sqlite3 import dbapi2
 
 class XerarFactura(Gtk.Window):
 
+    """ Ventana XerarFactura xenera a factura dun cliente, mostrando todos os pedidos feitos por el
+
+        Metodos:
+
+        __init__ --Constructor
+
+        """
+
     def __init__(self,cliente):
+
+        """Constructor  da clase XerarFactura (Window)
+           Recolle o nome da empresa seleccionada e xera a factura de dita empresa, calculando o importe total a pagar e volca os datos nun documento pdf
+
+            :param cliente:
+
+             Excepcions:
+             -Non ten
+
+              """
 
 
         bbdd = dbapi2.connect("bbdd.dat")
@@ -56,7 +74,6 @@ class XerarFactura(Gtk.Window):
 
                 ('BACKGROUND', (0, 5), (-1, -1), colors.aliceblue),
 
-                #('ALIGN', (2, 5), (-1, -1), 'RIGHT'),
 
                 ('VALIGN', (0, 0), (-1, -1), 'MIDDLE'),
 

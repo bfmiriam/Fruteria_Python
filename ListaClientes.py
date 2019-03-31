@@ -7,18 +7,31 @@ from gi.repository import Gtk
 
 class ListaClientes(Gtk.Window):
 
+    """Ventana ListaClientes para  mostrar todos os clientes da fruteria cos seus datos
+
+        Metodos:
+
+        __init__ --Constructor
+
+        """
+
 
     def __init__(self):
+
+        """Constructor  da clase ListaClientes (Window)
+           TreeView que mostra todos os clientes da base de datos e permite engadir novos
+
+           :param None
+
+           Excepcions:
+           -Non ten
+
+           """
+
         Gtk.Window.__init__(self, title="Lista de Clientes")
 
         bbdd = dbapi2.connect("bbdd.dat")
         self.cursor = bbdd.cursor()
-        #self.cursor.execute("create table Productos(producto text,tipo text, cantidade numeric, precioCompra numeric, precioVenta numeric, provedor text)")
-        #self.cursor.execute("insert into Productos values('naranja','clementina',3,1,2,'Pepe')")
-        #self.cursor.execute("insert into Productos values('manzana','golden',2,3,4,'Sara')")
-        #self.cursor.execute("insert into Productos values('platano','canarias',5,1.5,3.2,'Gabriel')")
-        #self.cursor.execute("delete * from Productos where producto='producto'")
-        #self.cursor.execute("commit")
 
         boxV = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
         self.add(boxV)
